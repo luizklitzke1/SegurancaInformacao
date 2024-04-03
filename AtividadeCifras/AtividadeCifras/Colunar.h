@@ -1,3 +1,5 @@
+//Alunos: Arthutr B Pinotti e Luiz G Klitzke
+
 #pragma once
 
 class CColunar

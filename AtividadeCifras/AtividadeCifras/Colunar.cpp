@@ -1,3 +1,5 @@
+//Alunos: Arthutr B Pinotti e Luiz G Klitzke
+
 #include <stdio.h>
 #include <vector>
 #include <string>
