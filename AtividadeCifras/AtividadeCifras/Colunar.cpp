@@ -6,19 +6,21 @@
 #include <iostream>
 #include "windows.h"
 
+#include "Colunar.h"
+
 using namespace std;
 
 #define CHAR_CORINGA 'X'
 
-enum EOpcoes
+enum EOpcoesColunar
 {
-	eNenhum   = 0,
-	eCifrar   = 1,
-	eDecifrar = 2,
-	eSair     = 3,
+	eColunarNenhum   = 0,
+	eColunarCifrar   = 1,
+	eColunarDecifrar = 2,
+	eColunarVoltar   = 3,
 };
 
-void Cifrar()
+void CColunar::Cifrar()
 {
 	cout << "Informe a quantidade de colunas: ";
 	unsigned long ulColunas = 0;
@@ -66,7 +68,7 @@ void Cifrar()
 	cout << endl << endl << endl;
 }
 
-void Decifrar()
+void CColunar::Decifrar()
 {
 	cout << "Informe a quantidade de colunas: ";
 	unsigned long ulColunas = 0;
@@ -111,36 +113,31 @@ void Decifrar()
 	cout << endl << endl << endl;
 }
 
-int main()
+void CColunar::Opcoes()
 {
-	SetConsoleCP      (1252);
-	SetConsoleOutputCP(1252);
+	long eOpcao = EOpcoesColunar::eColunarNenhum;
 
-	long eOpcao = EOpcoes::eNenhum;
-
-	while (eOpcao != EOpcoes::eSair)
+	while (eOpcao != EOpcoesColunar::eColunarVoltar)
 	{
 		cout << "[Cifra de transposição geométrica colunar]" << endl;
 		cout << "Escolha a operação: " << endl;
-		cout << EOpcoes::eCifrar   << " - Cifrar"   << endl;
-		cout << EOpcoes::eDecifrar << " - Decifrar" << endl;
-		cout << EOpcoes::eSair     << " - Sair"     << endl;
+		cout << EOpcoesColunar::eColunarCifrar   << " - Cifrar"   << endl;
+		cout << EOpcoesColunar::eColunarDecifrar << " - Decifrar" << endl;
+		cout << EOpcoesColunar::eColunarVoltar   << " - Voltar"   << endl;
 		cin >> eOpcao;
 
 		switch (eOpcao)
 		{
-		case EOpcoes::eDecifrar:
-			Decifrar();
+		case EOpcoesColunar::eColunarDecifrar:
+			CColunar::Decifrar();
 			break;
 
-		case EOpcoes::eCifrar:
-			Cifrar();
+		case EOpcoesColunar::eColunarCifrar:
+			CColunar::Cifrar();
 			break;
 
-		case EOpcoes::eSair:
+		case EOpcoesColunar::eColunarVoltar:
 			break;
 		}
 	}
-
-	return 0;
 }

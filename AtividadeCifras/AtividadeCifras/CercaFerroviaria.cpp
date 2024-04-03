@@ -6,17 +6,19 @@
 #include <iostream>
 #include "windows.h"
 
+#include "CercaFerroviaria.h"
+
 using namespace std;
 
 #define CHAR_CORINGA '.'
 #define CHAR_PLACE_HOLDER '@'
 
-enum EOpcoes
+enum EOpcoesCercaFerroviaria
 {
-	eNenhum   = 0,
-	eCifrar   = 1,
-	eDecifrar = 2,
-	eSair     = 3,
+	eCercaFerroviariaNenhum   = 0,
+	eCercaFerroviariaCifrar   = 1,
+	eCercaFerroviariaDecifrar = 2,
+	eCercaFerroviariaVoltar   = 3,
 };
 
 enum EDirecao
@@ -25,7 +27,7 @@ enum EDirecao
 	eSobe  = 2,   
 };
 
-void Cifrar()
+void CCercaFerroviaria::Cifrar()
 {
 	cout << "Informe a quantidade de trilhos: ";
 	unsigned long ulTrilhos = 0;
@@ -92,7 +94,7 @@ void Cifrar()
 	cout << endl << endl << endl;
 }
 
-void Decifrar()
+void CCercaFerroviaria::Decifrar()
 {
 	cout << "Informe a quantidade de trilhos: ";
 	unsigned long ulTrilhos = 0;
@@ -188,36 +190,31 @@ void Decifrar()
 	cout << endl << endl << endl;
 }
 
-int main()
+void CCercaFerroviaria::Opcoes()
 {
-	SetConsoleCP      (1252);
-	SetConsoleOutputCP(1252);
+	long eOpcao = EOpcoesCercaFerroviaria::eCercaFerroviariaNenhum;
 
-	long eOpcao = EOpcoes::eNenhum;
-
-	while (eOpcao != EOpcoes::eSair)
+	while (eOpcao != EOpcoesCercaFerroviaria::eCercaFerroviariaVoltar)
 	{
 		cout << "[Cerca ferroviária]" << endl;
 		cout << "Escolha a operação: " << endl;
-		cout << EOpcoes::eCifrar   << " - Cifrar"   << endl;
-		cout << EOpcoes::eDecifrar << " - Decifrar" << endl;
-		cout << EOpcoes::eSair     << " - Sair"     << endl;
+		cout << EOpcoesCercaFerroviaria::eCercaFerroviariaCifrar   << " - Cifrar"   << endl;
+		cout << EOpcoesCercaFerroviaria::eCercaFerroviariaDecifrar << " - Decifrar" << endl;
+		cout << EOpcoesCercaFerroviaria::eCercaFerroviariaVoltar   << " - Voltar"   << endl;
 		cin >> eOpcao;
 
 		switch (eOpcao)
 		{
-		case EOpcoes::eDecifrar:
-			Decifrar();
-			break;
+			case EOpcoesCercaFerroviaria::eCercaFerroviariaDecifrar:
+				CCercaFerroviaria::Decifrar();
+				break;
 
-		case EOpcoes::eCifrar:
-			Cifrar();
-			break;
+			case EOpcoesCercaFerroviaria::eCercaFerroviariaCifrar:
+				CCercaFerroviaria::Cifrar();
+				break;
 
-		case EOpcoes::eSair:
-			break;
+			case EOpcoesCercaFerroviaria::eCercaFerroviariaVoltar:
+				break;
 		}
 	}
-
-	return 0;
 }

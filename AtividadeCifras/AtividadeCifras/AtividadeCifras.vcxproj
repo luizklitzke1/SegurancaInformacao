@@ -129,6 +129,11 @@
   <ItemGroup>
     <ClCompile Include="CercaFerroviaria.cpp" />
     <ClCompile Include="Colunar.cpp" />
+    <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CercaFerroviaria.h" />
+    <ClInclude Include="Colunar.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
