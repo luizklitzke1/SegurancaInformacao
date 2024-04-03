@@ -12,17 +12,16 @@ using namespace std;
 
 enum EOpcoes
 {
-	eNenhum = 0,
-	eCifrar = 1,
+	eNenhum   = 0,
+	eCifrar   = 1,
 	eDecifrar = 2,
-	eSair = 3,
+	eSair     = 3,
 };
-
-unsigned long ulColunas = 0;
 
 void Cifrar()
 {
 	cout << "Informe a quantidade de colunas: ";
+	unsigned long ulColunas = 0;
 	cin >> ulColunas;
 	cin.ignore();
 	std::string sEntrada;
@@ -70,6 +69,7 @@ void Cifrar()
 void Decifrar()
 {
 	cout << "Informe a quantidade de colunas: ";
+	unsigned long ulColunas = 0;
 	cin >> ulColunas;
 
 	cin.ignore();
@@ -141,7 +141,6 @@ int main()
 			break;
 		}
 	}
-
 
 	return 0;
 }
