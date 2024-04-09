@@ -4,17 +4,20 @@
 #include <vector>
 #include <algorithm>
 
+#include "windows.h"
+
 using namespace std;
 
 enum EOpcoes
 {
     eCriptografar    = 1,
     eDescriptografar = 2,
+    eSair            = 3,
 };
 
 void Criptografar()
 {
-    cout << "Informe o texto de criptografado: ";
+    cout << "Informe o texto a ser criptografado: ";
     string sEntrada;
     getline(cin, sEntrada);
 
@@ -24,27 +27,18 @@ void Criptografar()
     string sChave;
     cin >> sChave;
 
-    vector<int> aAvanco;
-
     unsigned int uiTamanhoChave = sChave.size();
-    for (int i = 0; i < uiTamanhoChave; ++i)
-    {
-        aAvanco.push_back(sChave[i] - 'A');
-        cout << aAvanco[i] << endl;
-    }
-
-    cout << endl;
 
     for (int i = 0; i < sEntrada.size(); ++i)
     {
         char& cNovo = sEntrada[i];
-        cNovo += aAvanco[i % uiTamanhoChave];
+        cNovo = toupper(cNovo) + (toupper(sChave[i % uiTamanhoChave]) - 'A');
 
         if (cNovo > 'Z')
             cNovo = 'A' + cNovo - 'Z' - 1;
     }
 
-    cout << endl << "Texto cifrado: " << sEntrada << endl;
+    cout << endl << "Texto cifrado: " << sEntrada << endl << endl;
 }
 
 void Descriptografar()
@@ -52,7 +46,6 @@ void Descriptografar()
     cout << "Informe o texto a ser descriptografado: ";
     string sEntrada;
     getline(cin, sEntrada);
-    cin.ignore();
 
     sEntrada.erase(std::remove(sEntrada.begin(), sEntrada.end(), ' '), sEntrada.end());
 
@@ -60,45 +53,52 @@ void Descriptografar()
     string sChave;
     cin >> sChave;
 
-    vector<int> aAvanco;
-
     unsigned int uiTamanhoChave = sChave.size();
-    for (int i = 0; i < uiTamanhoChave; ++i)
-    {
-        aAvanco.push_back(sChave[i] - 'A');
-        cout << aAvanco[i] << endl;
-    }
-
-    cout << endl;
 
     for (int i = 0; i < sEntrada.size(); ++i)
     {
         char& cNovo = sEntrada[i];
-        cNovo -= aAvanco[i % uiTamanhoChave];
+
+        cNovo = toupper(cNovo) - (toupper(sChave[i % uiTamanhoChave]) - 'A');
 
         if (cNovo < 'A')
-            cNovo = 'A' - cNovo + 1 + 'A';
+            cNovo = 'Z' - ('A' - cNovo) + 1;
     }
 
-    cout << endl << "Texto descriptografado: " << sEntrada << endl;
+    cout << endl << "Texto decifrado: " << sEntrada << endl << endl;
 }
 
 int main() {
 
+    SetConsoleCP      (1252);
+    SetConsoleOutputCP(1252);
+
+    cout << "[Cifra de Vegenere]" << endl;
+    cout << "Escolha uma opção: " << endl;
+
     int eOpcao = 0;
-    cin >> eOpcao;
-    cin.ignore();
 
-    switch (eOpcao)
+    while (eOpcao != EOpcoes::eSair)
     {
-        case eCriptografar:
-            Criptografar();
-            break;
+        cout << EOpcoes::eCriptografar    << " - Criptografar"    << endl;
+        cout << EOpcoes::eDescriptografar << " - Descriptografar" << endl;
+        cout << EOpcoes::eSair            << " - Sair"            << endl;
 
-        case eDescriptografar:
-            Descriptografar();
-            break;
+        cin >> eOpcao;
+        cin.ignore();
+
+        switch (eOpcao)
+        {
+            case EOpcoes::eCriptografar:
+                Criptografar();
+                break;
+
+            case EOpcoes::eDescriptografar:
+                Descriptografar();
+                break;
+        }
     }
+
 
     return 0;
 }
