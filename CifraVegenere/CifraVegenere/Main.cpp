@@ -10,14 +10,14 @@ using namespace std;
 
 enum EOpcoes
 {
-    eCriptografar    = 1,
-    eDescriptografar = 2,
-    eSair            = 3,
+    eCifrar   = 1,
+    eDecifrar = 2,
+    eSair     = 3,
 };
 
-void Criptografar()
+void Cifrar()
 {
-    cout << "Informe o texto a ser criptografado: ";
+    cout << "Informe o texto a ser cifrado: ";
     string sEntrada;
     getline(cin, sEntrada);
 
@@ -41,9 +41,9 @@ void Criptografar()
     cout << endl << "Texto cifrado: " << sEntrada << endl << endl;
 }
 
-void Descriptografar()
+void Decifrar()
 {
-    cout << "Informe o texto a ser descriptografado: ";
+    cout << "Informe o texto a ser decifrado: ";
     string sEntrada;
     getline(cin, sEntrada);
 
@@ -80,25 +80,24 @@ int main() {
 
     while (eOpcao != EOpcoes::eSair)
     {
-        cout << EOpcoes::eCriptografar    << " - Criptografar"    << endl;
-        cout << EOpcoes::eDescriptografar << " - Descriptografar" << endl;
-        cout << EOpcoes::eSair            << " - Sair"            << endl;
+        cout << EOpcoes::eCifrar   << " - Cifrar"   << endl;
+        cout << EOpcoes::eDecifrar << " - Decifrar" << endl;
+        cout << EOpcoes::eSair     << " - Sair"     << endl;
 
         cin >> eOpcao;
         cin.ignore();
 
         switch (eOpcao)
         {
-            case EOpcoes::eCriptografar:
-                Criptografar();
+            case EOpcoes::eCifrar:
+                Cifrar();
                 break;
 
-            case EOpcoes::eDescriptografar:
-                Descriptografar();
+            case EOpcoes::eDecifrar:
+                Decifrar();
                 break;
         }
     }
-
 
     return 0;
 }
